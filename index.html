@@ -3,25 +3,114 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+     <script src="moment.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Orbitron:400,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
   </head>
+  <header>
+    <div id="twittler"><img src="img/logo.jpg" alt="Twittler Logo" height="100%" width="100%"></div>
+  </header>
+  <div id="container">
   <body>
+  <feed>
+    <div id="latestPosts">Latest Posts</div> 
+  </feed>
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+     
+      var $feed = $('feed');
+  /*  $body.html('');
+      var $body = $('body');
+       var $header = $('header');
+	    var $button = document.createElement("button");
+      $button.innerHTML = 'See '+streams.home.length+' new tweets';
+      $body.append($button);
+  */
+  // var $button = document.createElement("button");
+  //     $button.innerHTML = 'See '+streams.home.length+' new tweets';
+  //     $header.append($button);
+
+      var countTweets = function (userName) {
+         return  
+      };
+
+      var showTweets = function(userName){
+        /*$feed.html('');*/
+        var userNameShort;
+        if(userName === 'home'){
+          userNameShort = streams.home
+        }
+        else {
+          userNameShort = streams.home[userName];
+        }
+
+
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var $user = tweet.user;
+          // user div
+          var userDiv = document.createElement("div");
+          var content = document.createTextNode(tweet.user);
+          userDiv.appendChild(content);
+          userDiv.className += 'userSpan';
+
+
+          /*userSpan.text = $user;*/
+          /*$userSpan.addClass('userSpan');*/
+          var time = tweet.created_at;
+          var tweetTime = moment(time).fromNow();
+          /*Innitial time set up
+          var hours = time.getHours()
+          var minute = time.getMinutes();
+          var minutes = function (minute){
+            if(minute<10){
+              var minStr = minute.toString();
+              var answer = "0"+minStr;
+              return answer;
+            }
+            else {
+              return minute;
+              } 
+            }*/
+          
+          
+        //Message Content Div
+         /* var messageDiv = document.createElement("div");
+          var messageContent = document.createTextNode(tweet.message);
+          messageDiv.appendChild(messageContent);*/
+          //Message Time Div 
+          /*var timeDiv = document.createElement("div");
+          var timeContent = document.createTextNode(hours+":"+minutes(minute));
+          timeDiv.appendChild(timeContent);*/
+          // append everything to $tweet
+        
+          /*$tweet.append($('userDiv'));
+          $tweet.append($('messageDiv').innerHTML);
+          $tweet.append($('timeContent'));
+          */
+          /*$tweet.innerHTML = $('userDiv').innerHTML;*/
+          console.log(userDiv);
+          $tweet.text("@"+userDiv.innerHTML+': ' + tweet.message + '   - Tweeted '+tweetTime);
+          /*$('feed').innerHTML = $tweet;*/
+          $tweet.appendTo($feed);
           index -= 1;
         }
+        setTimeout(showTweets, 100000, userName);
+      }
+        showTweets('home')
+
 
       });
+      
 
     </script>
+	
   </body>
+</div>
+<!-- <footer>
+Created For Hack Reactor By Oleg Yanchinskiy</footer> -->
 </html>
