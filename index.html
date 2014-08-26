@@ -3,7 +3,6 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <script src="dropDown.js"></script>
     <script src="moment.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href='http://fonts.googleapis.com/css?family=Orbitron:400,900' rel='stylesheet' type='text/css'>
@@ -19,14 +18,14 @@
   <div id="container">
   <body>
     <ul class='dropdown'><div class='title sidebar'>See Tweets For...</div>
-          <li><a class='filter home' data-user='home' href="#">Home</a></li>
-          <li><a class='filter' data-user='shawndrost' href='#'</a>ShawnDrost</li>
-          <li><a class='filter' data-user='sharksforcheap' href='#'>SharksForCheap</a></li>
-          <li><a class='filter' data-user='mracus' href='#'>mracus</a></li>
-          <li><a class='filter' data-user="douglascalhoun" href='#'>DouglasCalhoun</a></li>  
+          <li class='filter home' data-user='home'><a href="#">Home</a></li>
+          <li class='filter' data-user='shawndrost'><a href='#'</a>ShawnDrost</li>
+          <li class='filter' data-user='sharksforcheap'><a href='#'>SharksForCheap</a></li>
+          <li class='filter' data-user='mracus'><a href='#'>mracus</a></li>
+          <li class='filter' data-user="douglascalhoun"><a href='#'>DouglasCalhoun</a></li>  
       </ul>
   <feed>
-    <div class="title">Latest Posts</div> 
+     
   </feed>
     <script>
       $(document).ready(function(){
@@ -35,7 +34,7 @@
       var timeOutId = null;
 
       var showTweets = function(userName){
-        $feed.html('');
+        $feed.html('<div class="title">Latest Posts</div>');
         var userNameShort;
         var timeOutId = null;
         if(userName === 'home'){
